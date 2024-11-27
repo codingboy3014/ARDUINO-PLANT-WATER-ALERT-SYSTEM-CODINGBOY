@@ -1,0 +1,14 @@
+Wiring
+
+Soil Moisture Sensor:
+VCC to 5V
+GND to GND
+Signal pin to A0 (analog input pin)
+
+Red LED:
+Long leg to pin 13 (via a 220-ohm resistor)
+Short leg to GND
+
+Green LED:
+Long leg to pin 12 (via a 220-ohm resistor)
+Short leg to GND
