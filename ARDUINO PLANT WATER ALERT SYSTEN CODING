@@ -1,0 +1,43 @@
+// Pin definitions
+const int moistureSensorPin = A0; // Analog pin for the soil moisture sensor
+const int redLedPin = 13;         // Digital pin for the red LED
+const int greenLedPin = 12;       // Digital pin for the green LED
+
+// Threshold for dry soil (adjust based on your sensor readings)
+const int moistureThreshold = 500;
+
+void setup() {
+  // Initialize serial communication for debugging
+  Serial.begin(9600);
+
+  // Set LED pins as outputs
+  pinMode(redLedPin, OUTPUT);
+  pinMode(greenLedPin, OUTPUT);
+
+  // Turn off both LEDs initially
+  digitalWrite(redLedPin, LOW);
+  digitalWrite(greenLedPin, LOW);
+}
+
+void loop() {
+  // Read the soil moisture level
+  int moistureLevel = analogRead(moistureSensorPin);
+
+  // Print the moisture level to the Serial Monitor
+  Serial.print("Soil Moisture Level: ");
+  Serial.println(moistureLevel);
+
+  // Check the soil moisture level
+  if (moistureLevel < moistureThreshold) {
+    // Soil is dry: turn on the red LED and turn off the green LED
+    digitalWrite(redLedPin, HIGH);
+    digitalWrite(greenLedPin, LOW);
+  } else {
+    // Soil has enough water: turn on the green LED and turn off the red LED
+    digitalWrite(redLedPin, LOW);
+    digitalWrite(greenLedPin, HIGH);
+  }
+
+  // Add a short delay for stability
+  delay(1000);
+}
